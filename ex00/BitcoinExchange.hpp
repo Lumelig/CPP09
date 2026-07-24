@@ -6,7 +6,7 @@
 /*   By: Jpflegha <jpflegha@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 19:09:09 by Jpflegha          #+#    #+#             */
-/*   Updated: 2026/07/22 14:38:37 by Jpflegha         ###   ########.fr       */
+/*   Updated: 2026/07/24 14:23:33 by Jpflegha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ class BitcoinExchange
         std::map<std::string, float> database_;
 
         bool isValidDate(const std::string &date) const;
-        bool isValidValue(const std::string &valueStr, float &value) const;
+        bool isValidValue(const std::string &valueStr, float &value, const std::string &line) const;
         bool splitLine(const std::string &line, char delim, std::string &left, std::string &right) const;
         float getRate(const std::string &date) const;
         

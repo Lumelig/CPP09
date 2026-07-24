@@ -111,16 +111,20 @@ bool BitcoinExchange::isValidDate(const std::string &date) const
     return (true);
 }
 
-bool BitcoinExchange::isValidValue(const std::string &valueStr, float &value) const
+bool BitcoinExchange::isValidValue(const std::string &valueStr, float &value, const std::string &line) const
 {
     if(valueStr.empty())
+    {
+        std::cout << "Error: bad input => " << line << std::endl;
         return(false);
-    
+    }
     std::istringstream iss(valueStr);
     iss >> value;
-
     if(iss.fail() || !iss.eof())
+    {
+        std::cout << "Error: bad input => " << line << std::endl;
         return(false);
+    }
     else if (value < 0)
      {
         std::cout << "Error: not a positive number." << std::endl;
@@ -217,7 +221,7 @@ void BitcoinExchange::processInput(const std::string &filename)
             std::cout << "Error: bad input => " << line << std::endl;
             continue;
         }
-        else if(!isValidValue(valueStr, value))
+        else if(!isValidValue(valueStr, value, line))
         {
             continue;
         }
