@@ -6,7 +6,7 @@
 /*   By: Jpflegha <jpflegha@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 19:09:09 by Jpflegha          #+#    #+#             */
-/*   Updated: 2026/07/20 19:25:44 by Jpflegha         ###   ########.fr       */
+/*   Updated: 2026/07/22 14:38:37 by Jpflegha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ class BitcoinExchange
         BitcoinExchange &operator=(const BitcoinExchange &other);
         ~BitcoinExchange();
 
-        void loadDatabase(const std::string &file);
-        void processInput(const std::string &file);
+        void loadDatabase(const std::string &filename);
+        void processInput(const std::string &filename);
   
-        class FileExeption : public std::exception
+        class FileException : public std::exception
         {
           public:
             virtual const char *what() const throw();  
@@ -41,7 +41,7 @@ class BitcoinExchange
 
         bool isValidDate(const std::string &date) const;
         bool isValidValue(const std::string &valueStr, float &value) const;
-        bool splitLine(const std::string &line, char delim, std::string &left, std::string right) const ;
+        bool splitLine(const std::string &line, char delim, std::string &left, std::string &right) const;
         float getRate(const std::string &date) const;
         
 };
