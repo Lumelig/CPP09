@@ -147,7 +147,7 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
 
     std::string line;
 
-    // Header prüfen
+    // Check the header
     if (!std::getline(file, line))
         throw FileException();
 
@@ -181,7 +181,7 @@ float BitcoinExchange::getRate(const std::string &date) const
     if(it != database_.end() && it->first == date)
         return(it->second);
     if(it == database_.begin())
-        throw std::out_of_range("No date available befor" + database_.begin()->first);
+        throw std::out_of_range("No date available before " + database_.begin()->first);
     // if not, lower_bound give you the next higher or equal date but we need the one befor if not fit
     --it;
     return(it->second); 
@@ -196,7 +196,7 @@ void BitcoinExchange::processInput(const std::string &filename)
     std::string line;
     float value;
     
-    // Header prüfen
+    // Check the header
     if (!std::getline(file, line))
         throw FileException();
 

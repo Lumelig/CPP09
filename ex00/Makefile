@@ -12,7 +12,7 @@
 
 NAME =	bte
 CC =	c++
-CFLAGS =	-Wall -Werror -Wextra -std=c++17
+CFLAGS =	-Wall -Werror -Wextra -std=c++17 -O2
 SRC =	main.cpp BitcoinExchange.cpp
 OBJ =	$(SRC:.cpp=.o)
 
@@ -22,7 +22,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(CLFAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

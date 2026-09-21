@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-/* Ein einzelnes Token: nur Ziffern, passt in int. */
+/* A single token: digits only, must fit in an int. */
 static bool	parseToken(const std::string &tok, int &out)
 {
 	if (tok.empty())
@@ -30,7 +30,7 @@ static bool	parseToken(const std::string &tok, int &out)
 	return (true);
 }
 
-/* Erster Durchgang: nur pruefen und zaehlen, nichts speichern. */
+/* First pass: only check and count, don't store anything yet. */
 static bool	checkArgs(int argc, char **argv, std::size_t &count)
 {
 	count = 0;
@@ -50,7 +50,7 @@ static bool	checkArgs(int argc, char **argv, std::size_t &count)
 	return (count > 0);
 }
 
-/* Datenverwaltung: argv -> Container. Wird MITGEMESSEN. */
+/* Fill the container from argv. This IS included in the timing. */
 template <typename Container>
 static void	fill(int argc, char **argv, Container &c)
 {
@@ -73,8 +73,8 @@ static void	printSequence(const std::string &label, const Container &c)
 	std::cout << std::endl;
 }
 
-/* "Before:" direkt aus argv ausgeben, damit kein zusaetzlicher Container
-   noetig ist und die Messung fuer beide Container fair bleibt. */
+/* Print "Before:" straight from argv, so we don't need an extra
+   container and the timing stays fair for both containers. */
 static void	printBefore(int argc, char **argv)
 {
 	std::cout << "Before:";
@@ -104,23 +104,25 @@ int	main(int argc, char **argv)
 
 	printBefore(argc, argv);
 
-	/* ---- std::vector: Befuellen + Sortieren, beides gemessen ---------- */
+	/* ---- std::vector: ---------- */
 	std::chrono::steady_clock::time_point	v0
 		= std::chrono::steady_clock::now();
 	fill(argc, argv, vec);
 	PmergeMe::sortVector(vec);
-	std::chrono::steady_clock::time_point	v1
-		= std::chrono::steady_clock::now();
+	std::chrono::steady_clock::time_point v1 = std::chrono::steady_clock::now();
 
-	/* ---- std::deque: dasselbe ---------------------------------------- */
+	// unsigned long	cmpVec = PmergeMe::compar();
+
+	/* ---- std::deque: ---------------------------------------- */
 	std::chrono::steady_clock::time_point	d0
 		= std::chrono::steady_clock::now();
 	fill(argc, argv, deq);
 	PmergeMe::sortDeque(deq);
-	std::chrono::steady_clock::time_point	d1
-		= std::chrono::steady_clock::now();
+	std::chrono::steady_clock::time_point d1 = std::chrono::steady_clock::now();
 
-	printSequence("After: ", vec);
+	// unsigned long	cmpDeq = PmergeMe::compar() - cmpVec;
+
+	printSequence("After:", vec);
 
 	double	usVector = std::chrono::duration<double, std::micro>(v1 - v0).count();
 	double	usDeque = std::chrono::duration<double, std::micro>(d1 - d0).count();
@@ -133,8 +135,9 @@ int	main(int argc, char **argv)
 			  << " elements with std::deque<int>  : " << usDeque << " us"
 			  << std::endl;
 
-	/* Nur zum Selbsttest, fuer die Abgabe auskommentiert lassen:
-	std::cout << "Number of comparisons: " << PmergeMe::comparisons() << std::endl;
-	*/
+	// For self-testing only, keep this commented out for submission:
+	// std::cout << "Number of comparisons Vec: " << cmpVec << std::endl;
+	// std::cout << "Number of comparisons Deq: " << cmpDeq << std::endl;
+	
 	return (0);
 }

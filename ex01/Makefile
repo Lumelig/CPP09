@@ -6,14 +6,14 @@
 #    By: Jpflegha <jpflegha@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/19 17:58:53 by Jpflegha          #+#    #+#              #
-#    Updated: 2026/07/24 18:46:28 by Jpflegha         ###   ########.fr        #
+#    Updated: 2026/09/09 14:50:34 by Jpflegha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	RPN
 CC =	c++
-CFLAGS =	-Wall -Werror -Wextra -std=c++17
-SRC =	main.cpp BitcoinExchange.cpp
+CFLAGS =	-Wall -Werror -Wextra -std=c++17 -O2
+SRC =	main.cpp RPN.cpp
 OBJ =	$(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -22,7 +22,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(CLFAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

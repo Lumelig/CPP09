@@ -6,7 +6,7 @@
 /*   By: Jpflegha <jpflegha@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 12:12:50 by Jpflegha          #+#    #+#             */
-/*   Updated: 2026/09/21 12:26:15 by Jpflegha         ###   ########.fr       */
+/*   Updated: 2026/09/21 14:21:53 by Jpflegha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 #include <algorithm>
 #include <deque>
 #include <vector>
-
-
-//https://claude.ai/artifact/XEqbpCqCXCbi4mpukvuW6S
 
 class PmergeMe
 {
