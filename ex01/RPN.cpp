@@ -6,7 +6,7 @@
 /*   By: Jpflegha <jpflegha@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 18:49:50 by Jpflegha          #+#    #+#             */
-/*   Updated: 2026/10/01 11:26:38 by Jpflegha         ###   ########.fr       */
+/*   Updated: 2026/10/01 20:41:59 by Jpflegha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ bool RPN::isOperator(const std::string &token) const
 
     while (iss >> token) 
     {
+        //push_back adds a number and pop_back delets it.
         if(isNumber(token))
         {
             std::istringstream tokenValue(token);
