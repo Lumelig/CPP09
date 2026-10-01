@@ -6,11 +6,11 @@
 #    By: Jpflegha <jpflegha@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/19 17:58:53 by Jpflegha          #+#    #+#              #
-#    Updated: 2026/07/19 17:59:42 by Jpflegha         ###   ########.fr        #
+#    Updated: 2026/10/01 11:19:39 by Jpflegha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	bte
+NAME =	btc
 CC =	c++
 CFLAGS =	-Wall -Werror -Wextra -std=c++17 -O2
 SRC =	main.cpp BitcoinExchange.cpp

@@ -118,6 +118,30 @@ bool BitcoinExchange::isValidValue(const std::string &valueStr, float &value, co
         std::cout << "Error: bad input => " << line << std::endl;
         return(false);
     }
+
+    size_t i = 0;
+    if(valueStr[i] == '+' || valueStr[i] == '-')
+        ++i;
+    bool hasDigits = false;
+    bool hasDot = false;
+    for(; i < valueStr.size(); ++i)
+    {
+        if(std::isdigit(static_cast<unsigned char>(valueStr[i])))
+            hasDigits = true;
+        else if(valueStr[i] == '.' && !hasDot)
+            hasDot = true;
+        else
+        {
+            std::cout << "Error: bad input => " << line << std::endl;
+            return(false);
+        }
+    }
+    if(!hasDigits)
+    {
+        std::cout << "Error: bad input => " << line << std::endl;
+        return(false);
+    }
+    
     std::istringstream iss(valueStr);
     iss >> value;
     if(iss.fail() || !iss.eof())
@@ -151,8 +175,7 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
     if (!std::getline(file, line))
         throw FileException();
 
-    if (line.find("date") == std::string::npos ||
-        line.find("exchange_rate") == std::string::npos)
+    if (line.find("date") == std::string::npos || line.find("exchange_rate") == std::string::npos)
     {
         std::cout << "Error: invalid database header." << std::endl;
         return;

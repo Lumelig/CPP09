@@ -6,7 +6,7 @@
 /*   By: Jpflegha <jpflegha@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 18:49:50 by Jpflegha          #+#    #+#             */
-/*   Updated: 2026/09/09 14:52:59 by Jpflegha         ###   ########.fr       */
+/*   Updated: 2026/10/01 11:26:38 by Jpflegha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 RPN::RPN()
 {}
 
-RPN::RPN(const RPN &other) : stack_(other.stack_)
+RPN::RPN(const RPN &other) : list_(other.list_)
 {
     
 }
@@ -28,7 +28,7 @@ RPN &RPN::operator=(const RPN &other)
 {
     if(this != &other)
     {
-        stack_ = other.stack_;
+        list_ = other.list_;
     }
     return(*this);
 }
@@ -95,27 +95,27 @@ bool RPN::isOperator(const std::string &token) const
             std::istringstream tokenValue(token);
             int value;
             tokenValue >> value;
-            stack_.push(value);            
+            list_.push_back(value);            
         }
         else if(isOperator(token))
         {
-            if(stack_.size() < 2)
+            if(list_.size() < 2)
                 throw InvalidCommand();
-            int b = stack_.top();
-            stack_.pop();
-            int a = stack_.top();
-            stack_.pop();
+            int b = list_.back();
+            list_.pop_back();
+            int a = list_.back();
+            list_.pop_back();
             
             int result = calculator(a, b, token);
-            stack_.push(result); 
+            list_.push_back(result); 
         }
         else 
         {
             throw InvalidCommand();
         }
     }
-    if(stack_.size() != 1)
+    if(list_.size() != 1)
         throw InvalidCommand();
     
-    return (stack_.top());
+    return (list_.back());
  }

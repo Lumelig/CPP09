@@ -6,7 +6,7 @@
 /*   By: Jpflegha <jpflegha@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 18:49:53 by Jpflegha          #+#    #+#             */
-/*   Updated: 2026/09/09 14:34:01 by Jpflegha         ###   ########.fr       */
+/*   Updated: 2026/10/01 11:23:37 by Jpflegha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <exception>
 #include <stack>
 #include <string>
+#include <list>
 #include <sstream>
 #include <iostream>
 #include <stdexcept>
@@ -38,7 +39,7 @@ class RPN
         };
         
         private:
-            std::stack<int> stack_;
+            std::list<int> list_;
             
             bool    isOperator(const std::string &token) const;
             bool    isNumber(const std::string &token) const;
